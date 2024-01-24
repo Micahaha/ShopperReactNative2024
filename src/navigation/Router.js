@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from '../screens/Home';
 import AddListScreen from '../screens/AddList'
+import TabNavigator from './TabNavigator';
 
 const Stack = createStackNavigator();
 
