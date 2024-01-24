@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 15,
     borderBottomWidth: 1.0,
-    color: 'black',
+    color: 'red',
     borderColor: 'lightgrey',
   },
   date: {

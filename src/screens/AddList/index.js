@@ -11,26 +11,26 @@ const AddListScreen = props => {
     const [name, setName] = useState('');
     const [store, setStore] = useState('');
     const [date, setDate] = useState('');
-
-    const onListAdd = () => {
-        if (!name){
-            alert('Plase enter a shopping list name.')
-            return;
-        }
-
-        if (!store){
-            alert('Plase enter a shopping list name.')
-            return;
-        }
-
-        if (!date){
-            alert('Plase enter a shopping list name.')
-            return;
-        }
-        alert(name = 'Added.')
-        navigation.navigate('Start Shopping!');
-    }
     
+    const onListAdd = () => {
+        if (!name)
+        {
+            alert('Please enter a shopping list name.')
+            return;
+        }
+        if(!store)
+        {
+            alert('Please enter a shopping lis store.')
+        }
+        if (!date)
+        {
+            alert('Please enter a shopping list date.')
+            return;
+        }
+        alert(name + ' Added.')
+        navigation.navigate('Start Shopping!');
+
+    }
 
   return (
     <View style={styles.container}>
@@ -42,15 +42,15 @@ const AddListScreen = props => {
                 placeholder={'Enter Name'}
                 placeholderTextColor={'grey'}
             />
-             <TextInput
-                value={name}
+            <TextInput
+                value={store}
                 onChangeText={value => setStore(value)}
                 style={styles.name}
                 placeholder={'Enter Store'}
                 placeholderTextColor={'grey'}
             />
-             <TextInput
-                value={name}
+            <TextInput
+                value={date}
                 onChangeText={value => setDate(value)}
                 style={styles.name}
                 placeholder={'Enter Date in format YYYY-MM-DD'}
@@ -59,7 +59,7 @@ const AddListScreen = props => {
         </View>
         <View style={styles.bottomContainer}>
             <Pressable style={styles.button} onPress={onListAdd}>
-                <text style={styles.buttonText}>Add</text>
+            <Text style={styles.buttonText}>Add</Text>
             </Pressable>
         </View>
     </View>

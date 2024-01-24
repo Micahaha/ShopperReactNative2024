@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles';
+import {View, Text, Pressable, SafeAreaView} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const ItemsScreen = props => {
