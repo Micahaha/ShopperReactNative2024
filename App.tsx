@@ -9,7 +9,15 @@ import React from 'react';
 import type {Node} from 'react';
 import Router from './src/navigation/Router';
 
+const database = require('./src/components/handlers/database.js');
+
 const App: () => Node = () => {
+  try {
+    database.createListsTable();
+  }
+  catch (error){
+    console.log('Failed to create lists table ' + error);
+  }
   return <Router />;
 };
 

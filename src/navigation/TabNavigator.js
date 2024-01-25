@@ -1,6 +1,6 @@
 import React from 'react';
-import ListsScreen  from "C:/Users/xicer/OneDrive/Documents/ShopperReactNative2024/src/screens/Lists/Index.js";
-import ItemsScreen from "C:/Users/xicer/OneDrive/Documents/ShopperReactNative2024/src/screens/Items/index.js";
+import ListsScreen from '../screens/Lists/Index';
+import ItemsScreen from '../screens/Items';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 const Tab = createBottomTabNavigator();
