@@ -52,6 +52,13 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     marginBottom: 10,
   },
+  priority: {
+    fontSize: 16,
+    borderBottomWidth: 1.0,
+    color: 'black',
+    borderColor: 'lightgrey',
+    marginBottom: 10,
+  },
 });
 
 export default styles;

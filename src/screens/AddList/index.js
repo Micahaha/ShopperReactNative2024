@@ -13,8 +13,10 @@ const AddListScreen = props => {
     const [name, setName] = useState('');
     const [store, setStore] = useState('');
     const [date, setDate] = useState('');
+    const [priority, setPriority] = useState('');
     
     const onListAdd = () => {
+        console.log(priority)
         if (!name)
         {
             alert('Please enter a shopping list name.');
@@ -30,9 +32,14 @@ const AddListScreen = props => {
             alert('Please enter a shopping list date.');
             return;
         }
+        if (!priority)
+        {
+            alert('Please enter a priority type as HIGH or LOW.');
+            return;
+        }
 
         try {
-            database.addList(name,store,date);
+            database.addList(name,store,date,priority);
         } catch (error) {
             console.log('Error adding list ' + error);
         }
@@ -56,6 +63,13 @@ const AddListScreen = props => {
                 onChangeText={value => setStore(value)}
                 style={styles.name}
                 placeholder={'Enter Store'}
+                placeholderTextColor={'grey'}
+            />
+            <TextInput
+                value={priority}
+                onChangeText={value => setPriority(value)}
+                style={styles.name}
+                placeholder={'Enter Priority as "LOW" or "HIGH"'}
                 placeholderTextColor={'grey'}
             />
             <TextInput
