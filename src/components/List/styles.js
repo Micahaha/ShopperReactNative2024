@@ -31,8 +31,9 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   priority: {
-    fontSize: 20,
-    marginLeft: 10,
+    fontSize: 12,
+    margin: 18,
+    color: 'white',
     flex: 1,
     flexWrap: 'wrap',
   }

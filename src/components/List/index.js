@@ -9,6 +9,7 @@ const List = props => {
     
     const onPress = () => {
         console.log(post.priority);
+        console.log(post.color);
     }
 
   return (
@@ -21,7 +22,7 @@ const List = props => {
             <View style ={{flex: 2}}>
                 <Text style={styles.date}>{post.date}</Text>
             </View>
-            <View style ={{flex: 1, backgroundColor: 'green'}}>
+            <View style ={{flex: 1, backgroundColor: post.color}}>
                 <Text style={styles.priority}>{post.priority}</Text>
             </View>
         </TouchableOpacity>
