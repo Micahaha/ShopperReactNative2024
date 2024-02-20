@@ -1,15 +1,18 @@
 import React from 'react';
 import styles from './styles';
 import {Text, Touchable, TouchableOpacity, View } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native'; 
 
 const List = props => {
 
     const post = props.post;
+
+
+    const navigation = useNavigation();
     
     const onPress = () => {
-        console.log(post.priority);
-        console.log(post.color);
+        navigation.navigate('Existing List', {post: post});
+         
     }
 
   return (
