@@ -6,6 +6,7 @@ const shopperDB = openDatabase({name: 'Shopper.db'});
 
 // create contant that contains the naem of the lists table
 const listsTableName = 'lists';
+const itemsTableName = 'items';
 
 module.exports = {
     // declare function that will create lists table
@@ -35,6 +36,31 @@ module.exports = {
 
     },
 
+    createItemsTable: async function() {
+        // declare transaction that will execute SQL
+        (await shopperDB).transaction(txn => {
+            // execute the SQL
+            txn.executeSql(
+                `CREATE TABLE IF NOT EXISTS ${itemsTableName}(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    name TEXT(100),
+                    price REAL,
+                    quantity INTEGER
+                );`,
+                // arguments passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log('items table created successfully.');
+                },
+                error => {
+                    console.log('Error creating items table ' + error.message);
+                },
+            );
+        });
+
+    },
+
     // declare function that will insert a row of data into the lists table
     
     addList: async function (name, store, date, priority){
@@ -55,4 +81,24 @@ module.exports = {
             );
         });
     },
+
+
+    addItem: async function (name, price, quantity){
+        // declare transaction that will execute the SQL
+        (await shopperDB).transaction(txn => {
+            // execute SQL
+            txn.executeSql(
+                `INSERT INTO ${itemsTableName} (name, price, quantity) VALUES ("${name}", "${price}", "${quantity}")`,
+                // arguements passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log(name + ' added successfully');
+                },
+                error => {
+                    console.log('Error creating item' + error.message);
+                },
+            );
+        });
+    }
 };

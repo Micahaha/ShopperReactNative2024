@@ -25,9 +25,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
   },
   quantity: {
-    fontSize: 18,
+    fontSize: 30,
     marginLeft: 10,
-    flex: 1,
     flexWrap: 'wrap',
   },
 });
