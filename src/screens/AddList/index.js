@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import {View, Text, TextInput, Pressable, Alert } from 'react-native';
+import {View, Text, TextInput, Pressable, Alert, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
+import SelectDropdown from 'react-native-select-dropdown';
+import Item from '../../components/Item';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+
 
 const database = require('../../components/handlers/database.js');
 
@@ -12,8 +16,22 @@ const AddListScreen = props => {
 
     const [name, setName] = useState('');
     const [store, setStore] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date());
     const [priority, setPriority] = useState('');
+    const [datePicker, setDatePicker] = useState(false);
+    const [selectedDate, setSelectedDate] = useState('');
+
+    const priorityNames = ['HIGH', 'LOW'];
+
+    function showDatePicker(){
+        setDatePicker(true);
+    }
+
+    function onDateSelected(event, value){
+        setDate(value);
+        setDatePicker(false);
+        setSelectedDate(value.toLocaleDateString());
+    }
     
     const onListAdd = () => {
         console.log(priority)
@@ -24,10 +42,10 @@ const AddListScreen = props => {
         }
         if(!store)
         {
-            alert('Please enter a shopping lis store.');
+            alert('Please enter a shopping list store.');
             return;
         }
-        if (!date)
+        if (!selectedDate)
         {
             alert('Please enter a shopping list date.');
             return;
@@ -39,7 +57,7 @@ const AddListScreen = props => {
         }
 
         try {
-            database.addList(name,store,date,priority);
+            database.addList(name,store,date.toLocaleDateString(),priority);
         } catch (error) {
             console.log('Error adding list ' + error);
         }
@@ -65,19 +83,51 @@ const AddListScreen = props => {
                 placeholder={'Enter Store'}
                 placeholderTextColor={'grey'}
             />
-            <TextInput
-                value={priority}
-                onChangeText={value => setPriority(value)}
-                style={styles.name}
-                placeholder={'Enter Priority as "LOW" or "HIGH"'}
-                placeholderTextColor={'grey'}
+            <SelectDropdown
+                data={priorityNames}
+                defaultValue={priority}
+                defaultButtonText={'Select Priority'}
+                onSelect={(selectedItem, index) => {
+                    setPriority(selectedItem)
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    return selectedItem;
+                }}
+                rowTextForSelection={(item, index) => {
+                    return item;
+                }}
+                buttonStyle={styles.dropdownBtnStyle}
+                buttonTextStyle={styles.dropdownBtnTxtStyle}
+                dropdownStyle={styles.dropdownDropdownStyle}
+                rowStyle={styles.dropdownRowStyle}
+                rowTextStyle={styles.dropdownRowTxtStyle}      
             />
+            {datePicker && (
+                <DateTimePickerAndroid
+                    value={date}
+                    mode={'date'}
+                    display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+                    is24Hour={true}
+                    onChange={onDateSelected}
+                    minimumDate={new Date(Date.now())}
+                    
+                />
+
+            )}
+            {!datePicker && (
+                <View>
+                    <Pressable 
+                    onPress={showDatePicker} 
+                    style={styles.dateButton}>
+                        <Text style={styles.dateButtonText}>Select a Date</Text>
+                    </Pressable>
+                </View>
+            )}
             <TextInput
-                value={date}
-                onChangeText={value => setDate(value)}
-                style={styles.name}
-                placeholder={'Enter Date in format YYYY-MM-DD'}
-                placeholderTextColor={'grey'}
+                value={selectedDate}
+                style={styles.date}
+                placeholder={'Selected Date'}
+                editable={false}
             />
         </View>
         <View style={styles.bottomContainer}>

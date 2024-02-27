@@ -59,6 +59,47 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     marginBottom: 10,
   },
+
+  dateButton: {
+    backgroundColor: 'red',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginVertical: 10,
+    borderRadius: 30,
+  },
+
+  dateButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  dropdownBtnStyle: {
+    width: '100%',
+    height: 50,
+    borderRadius: 30,
+    borderColor: 'red',
+    backgroundColor: 'red',
+    marginVertical: 10,
+  },
+
+  dropdownBtnTxtStyle: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  dropdownDropdownStyle: {
+    borderRadius: 5,
+  },
+  dropdownRowStyle: {
+    backgroundColor: '#EFEFEF',
+  },
+  dropdownRowTxtStyle: {
+    color: '#000',
+    textAlign: 'left',
+    fontSize: 16,
+  }
 });
 
 export default styles;
