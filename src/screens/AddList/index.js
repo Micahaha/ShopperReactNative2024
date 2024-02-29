@@ -3,8 +3,7 @@ import {View, Text, TextInput, Pressable, Alert, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './styles';
 import SelectDropdown from 'react-native-select-dropdown';
-import Item from '../../components/Item';
-import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import  DateTimePickerAndroid  from '@react-native-community/datetimepicker';
 
 
 const database = require('../../components/handlers/database.js');
