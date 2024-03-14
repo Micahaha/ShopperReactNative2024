@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './styles';
 import {View, Text, TextInput, Pressable, Alert} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 // import openDatabase hook
 import { openDatabase } from "react-native-sqlite-storage";
@@ -20,7 +21,7 @@ const ExistingListScreen = props => {
     const [date, setDate] = useState(post.date);
     const [priority, setPriority] = useState(post.priority);
 
-
+    const navigation = useNavigation()
 
     
     const onListUpdate = () => {
@@ -95,52 +96,12 @@ const ExistingListScreen = props => {
         );
     }
     const onAddItem = () => {
-        console.log(priority)
-        if (!name)
-        {
-            alert('Please enter a shopping list name.');
-            return;
-        }
-        if(!store)
-        {
-            alert('Please enter a shopping lis store.');
-            return;
-        }
-        if (!date)
-        {
-            alert('Please enter a shopping list date.');
-            return;
-        }
-        if (!priority)
-        {
-            alert('Please enter a priority type as HIGH or LOW.');
-            return;
-        }
+        navigation.navigate('Add List Item', {post: post});
 
+      
     }
     const onViewList = () => {
-        console.log(priority)
-        if (!name)
-        {
-            alert('Please enter a shopping list name.');
-            return;
-        }
-        if(!store)
-        {
-            alert('Please enter a shopping lis store.');
-            return;
-        }
-        if (!date)
-        {
-            alert('Please enter a shopping list date.');
-            return;
-        }
-        if (!priority)
-        {
-            alert('Please enter a priority type as HIGH or LOW.');
-            return;
-        }
-
+        navigation.navigate('View List Items', {post:post});
     }
 
 

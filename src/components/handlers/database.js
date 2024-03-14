@@ -7,6 +7,7 @@ const shopperDB = openDatabase({name: 'Shopper.db'});
 // create contant that contains the naem of the lists table
 const listsTableName = 'lists';
 const itemsTableName = 'items';
+const listItemsTableName = 'list_items'
 
 module.exports = {
     // declare function that will create lists table
@@ -89,6 +90,49 @@ module.exports = {
             // execute SQL
             txn.executeSql(
                 `INSERT INTO ${itemsTableName} (name, price, quantity) VALUES ("${name}", "${price}", "${quantity}")`,
+                // arguements passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log(name + ' added successfully');
+                },
+                error => {
+                    console.log('Error creating item' + error.message);
+                },
+            );
+        });
+    },
+
+    createListsItemsTable: async function() {
+        // declare transaction that will execute SQL
+        (await shopperDB).transaction(txn => {
+            // execute the SQL
+            txn.executeSql(
+                `CREATE TABLE IF NOT EXISTS ${listItemsTableName}(
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    list_id INTEGER,
+                    item_id INTEGER
+                );`,
+                // arguments passed when using SQL prepared statements
+                [],
+                // callback functions to handle results
+                () => {
+                    console.log('items table created successfully.');
+                },
+                error => {
+                    console.log('Error creating items table ' + error.message);
+                },
+            );
+        });
+
+    },
+
+    addListItem: async function (list_id, item_id){
+        // declare transaction that will execute the SQL
+        (await shopperDB).transaction(txn => {
+            // execute SQL
+            txn.executeSql(
+                `INSERT INTO ${listItemsTableName} (list_id, item_id) VALUES (${list_id}, ${item_id})`,
                 // arguements passed when using SQL prepared statements
                 [],
                 // callback functions to handle results

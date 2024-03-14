@@ -20,10 +20,12 @@ const App: () => Node = () => {
     console.log('Failed to create lists table ' + error);
   }
 
-  try {
-    database.createItemsTable();
-
+  try { database.createItemsTable(); }
+  catch (error){
+    console.log('Failed to create items table ' + error);
   }
+
+  try { database.createListsItemsTable(); }
   catch (error){
     console.log('Failed to create items table ' + error);
   }
