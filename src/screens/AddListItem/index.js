@@ -14,6 +14,7 @@ const shopperDB = openDatabase({name: 'Shopper.db'});
 const itemsTableName = 'items';
 
 const AddListItemScreen = props => {
+  
     const post = props.route.params.post;
 
     const navigation = useNavigation();

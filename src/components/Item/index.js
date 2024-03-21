@@ -30,12 +30,12 @@ const Item = props => {
   return (
     <View style={styles.container}>
         <TouchableOpacity style={styles.touchable} onPress = {onPress}>
-            <View style={{flex: 13}}>
+            <View style={{flex: 1}}>
                 <Text style={styles.name} numberOfLines={2}>{post.name}</Text>
                 <Text style={styles.price} numberOfLines={2}>{post.price}</Text>
             </View>
             <View style ={{flex: 1}}>
-                <Text style={styles.quantity}>{post.quantity}</Text>
+                <Text style={styles.quantity}>quantity: {post.quantity}</Text>
             </View>
         </TouchableOpacity>
     </View>
