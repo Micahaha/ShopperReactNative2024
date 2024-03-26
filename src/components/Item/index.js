@@ -23,7 +23,7 @@ const Item = props => {
             }
             alert('Item added to list!')
         } else {
-            console.log(post.name);
+            navigation.navigate('Existing Item', {post: post})
         }
     }
 

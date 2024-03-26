@@ -52,14 +52,14 @@ const AddItemsScreen = props => {
             <TextInput
                 value={price}
                 onChangeText={value => setPrice(value)}
-                style={styles.name}
+                style={styles.price}
                 placeholder={'Enter Price'}
                 placeholderTextColor={'grey'}
             />
             <TextInput
                 value={quantity}
                 onChangeText={value => setQuantity(value)}
-                style={styles.name}
+                style={styles.quantity}
                 placeholder={'Enter Quantity'}
                 placeholderTextColor={'grey'}
             />
