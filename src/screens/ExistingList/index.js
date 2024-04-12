@@ -46,7 +46,7 @@ const ExistingListScreen = props => {
             alert('Please enter a priority type as HIGH or LOW.');
             return;
         }
-        shopperDB.transaction(txn => {
+        SCHEDU.transaction(txn => {
             txn.executeSql(
                 `UPDATE ${listsTableName} SET name = "${name}", store = "${store}", date = "${date}", priority = "${priority}" WHERE id = "${post.id}"`,
                 [],
@@ -110,6 +110,8 @@ const ExistingListScreen = props => {
     <View style={styles.container}>
         <View style={styles.topContainer}>
             <TextInput
+                accessible={true}
+                accessibilityLabel={selectedDate}
                 value={name}
                 onChangeText={value => setName(value)}
                 style={styles.name}
@@ -139,17 +141,35 @@ const ExistingListScreen = props => {
             />
         </View>
         <View style={styles.bottomContainer}>
-            <Pressable style={styles.updateButton} onPress={onListUpdate}>
+            <Pressable
+               accessible={true}
+               accessibilityRole='button'
+               accessibilityLabel='Double tap to update list'
+            style={styles.updateButton} onPress={onListUpdate}>
             <Text style={styles.buttonText}>Update</Text>
             </Pressable>
-            <Pressable style={styles.deleteButton} onPress={onListDelete}>
+            <Pressable
+                accessible={true}
+                accessibilityRole='button'
+                accessibilityLabel='Double tap to delete list'
+            style={styles.deleteButton} onPress={onListDelete}>
             <Text style={styles.buttonText}>Delete</Text>
             </Pressable>
-            <Pressable style={styles.addButton} onPress={onAddItem}>
+            <Pressable
+              accessible={true}
+              accessibilityRole='button'
+              accessibilityLabel='Double tap to add an item to this list'
+              accessibilityHint='Open add item screen'
+            style={styles.addButton} onPress={onAddItem}>
             <Text style={styles.buttonText}>Add</Text>
             </Pressable>
-            <Pressable style={styles.viewButton} onPress={onViewList}>
-            <Text style={styles.buttonText}>View Item</Text>
+            <Pressable
+             accessible={true}
+             accessibilityRole='button'
+             accessibilityLabel='Double tap to view items added to this list'
+             accessibilityHint='Open view item screen'
+            style={styles.viewButton} onPress={onViewList}>
+            <Text style={styles.buttonText}>View Items</Text>
             </Pressable>
         </View>
     </View>
