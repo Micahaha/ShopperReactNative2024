@@ -37,7 +37,9 @@ const ViewListItemsScreen = props => {
       shopperDB.transaction(txn => {
         // execute SELECT
         txn.executeSql(
-          `SELECT items.id, name, price, quantity FROM ${itemsTableName}, ${listItemsTableName} WHERE items.id = item_id AND list_id = ${post.id}`,
+          `SELECT items.id, name, price, quantity 
+          FROM ${itemsTableName}, ${listItemsTableName} 
+          WHERE items.id = item_id AND list_id = ${post.id}`,
           [],
           // callback function to handle results from SELECT
           (_, res) => {

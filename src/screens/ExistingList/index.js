@@ -111,7 +111,7 @@ const ExistingListScreen = props => {
         <View style={styles.topContainer}>
             <TextInput
                 accessible={true}
-                accessibilityLabel={selectedDate}
+                accessibilityLabel={date}
                 value={name}
                 onChangeText={value => setName(value)}
                 style={styles.name}

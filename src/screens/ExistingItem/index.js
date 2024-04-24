@@ -42,7 +42,7 @@ const ExistingItemsScreen = props => {
 
         shopperDB.transaction(txn => {
             txn.executeSql(
-                `UPDATE ${itemsTableName} SET name = "${name}", price = ${price}, quantity = ${quantity} WHERE id = "${post.id}"`,
+                `UPDATE ${itemsTableName} SET name = '${name}', price = ${price}, quantity = ${quantity} WHERE id = '${post.id}'`,
                 [],
                 () => {
                     console.log(`${name} updated successfully`)
