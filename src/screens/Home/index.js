@@ -23,10 +23,10 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const onSubmit = async () => {
+    console.log('Pressed Sign-in')
     if (!username || !password){
       Alert.alert('Invalid Input', 'Username and password are required!')
-      return;
-    }
+    } 
 
     shopperDB.transaction(txn => {
       txn.executeSql(
@@ -35,6 +35,7 @@ const HomeScreen = () => {
         (_,res) => {
           let user = res.rows.length;
           if(user == 0){
+            console.log('User is 0')
             Alert.alert('Invalid User', 'Username is invalid!');
             return;
           } else {
@@ -55,7 +56,7 @@ const HomeScreen = () => {
         }
       );
     });
-  };
+};
 
   return (
     <View style={styles.container}>
@@ -103,13 +104,12 @@ const HomeScreen = () => {
             flex: 1,
           }}
           />
-          <TouchableOpacity onpress={onIconPress}>
+          <TouchableOpacity onPress={onIconPress}>
             {securityTextEntry === true ? (
-              <Entypo name="eye" size={20} />
+              <Entypo name="eye" size={20}/>
             ) : (
-              <Entypo name ="eye-width-line" size={20} />
-        
-            )
+              <Entypo name="eye-with-line" size={20}/>
+            ) 
             }
           </TouchableOpacity>
 
@@ -118,10 +118,9 @@ const HomeScreen = () => {
         
       </View>
       <View style={styles.bottom}>
-
         <Pressable
-          style={styles.button}
-          onPress={() => onSubmit()}>
+        style={styles.button}
+        onPress={() => onSubmit()}>
           <Text style={styles.buttonText}>Sign In</Text>
         </Pressable>
 
