@@ -5,8 +5,10 @@ import { useNavigation } from '@react-navigation/native';
 import { openDatabase } from 'react-native-sqlite-storage';
 import { TextInput } from 'react-native-gesture-handler';
 import Entypo from 'react-native-vector-icons/Entypo'
+import bcrypt from 'react-native-bcrypt';
 const shopperDB = openDatabase({name: 'Shopper.db'})
 const usersTableName = 'users';
+
 
 
 const HomeScreen = () => {
@@ -14,6 +16,7 @@ const HomeScreen = () => {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
   const [securityTextEntry, setSecurityTextEntry] = useState(true);
+  
 
   const onIconPress = () => {
     setSecurityTextEntry(!securityTextEntry);
@@ -30,17 +33,16 @@ const HomeScreen = () => {
 
     shopperDB.transaction(txn => {
       txn.executeSql(
-        `SELECT * FROM ${userTableName} WHERE username = "${username}"`,
+        `SELECT * FROM ${usersTableName} WHERE username = "${username}"`,
         [],
         (_,res) => {
           let user = res.rows.length;
           if(user == 0){
-            console.log('User is 0')
             Alert.alert('Invalid User', 'Username is invalid!');
-            return;
           } else {
             let item = res.rows.item(0);
             let isPasswordCorrect = bcrypt.compareSync(password, item.password);
+            console.log(isPasswordCorrect)
             if(!isPasswordCorrect){
               Alert.alert('Invalid User', 'Password is invalid!')
               return;
